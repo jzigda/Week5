@@ -1,0 +1,7 @@
+Raj =India
+Jhon =Armenia
+Leo =Argentina
+Jigme = Bhutan
+Anna= Russia
+
+Thapa =Nepal
