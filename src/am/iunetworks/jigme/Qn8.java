@@ -1,6 +1,6 @@
 package am.iunetworks.jigme;
 
-class Fibonacci{
+class Qn8 {
     static int calculateSum(int n)
     {
         if (n <= 0)

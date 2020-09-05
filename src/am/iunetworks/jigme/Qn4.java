@@ -1,53 +1,40 @@
 package am.iunetworks.jigme;
+import java.util.Arrays;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+public class Qn4 {
+    public static void main(String args[]) {
+        String s = "leetcode";
+        System.out.println(sortString(s));
 
+    }
+    public static String sortString(String s) {
+        StringBuilder charResult = new StringBuilder("");
+        int charCount = s.length();
+        int charFrequency[] = new int[26];
+        Arrays.fill(charFrequency, 0);
 
-    class Qn4 {
-        static class Pair {
-            int count;
-            char c;
-            Pair(int count, char c) {
-                this.count = count;
-                this.c = c;
-            }
+        for (int i = 0; i < s.length(); i++) {
+            charFrequency[s.charAt(i) - 'a']++;
         }
-        Map<Character, Integer> map = new HashMap<>();
-        public String reorganizeString(String S) {
-            for(char c : S.toCharArray()) {
-                map.putIfAbsent(c, 0);
-                map.put(c, map.get(c) + 1);
-            }
-            PriorityQueue<Pair> pairs = new PriorityQueue<>((a, b) -> (b.count - a.count));
-            for(Map.Entry<Character, Integer> e : map.entrySet()) {
-                pairs.add(new Pair(e.getValue(), e.getKey()));
-            }
-            StringBuilder sb = new StringBuilder();
-            while(!pairs.isEmpty()) {
-                Pair p = pairs.poll();
-                if(sb.length() >= 1 && sb.charAt(sb.length() - 1) == p.c) {
-                    Pair pp = pairs.poll();
-                    if(pp == null) {
-                        return "";
-                    }
-                    pp.count --;
-                    sb.append(pp.c);
-                    if(pp.count != 0)
-                        pairs.add(pp);
+        while (charCount > 0) {
+
+            for (int i = 0; i < charFrequency.length; i++) {
+                if (charFrequency[i] != 0) {
+                    charResult.append((char) (i + 97));
+                    charFrequency[i]--;
+                    charCount--;
                 }
-                p.count--;
-                sb.append(p.c);
-                if(p.count != 0)
-                    pairs.add(p);
             }
-            return sb.toString();
+
+            for (int i = charFrequency.length - 1; i >= 0; i--) {
+                if (charFrequency[i] != 0) {
+                    charResult.append((char) (i + 97));
+                    charFrequency[i]--;
+                    charCount--;
+                }
+            }
         }
 
-    public static void  main   (String [] args){
-        Pair a =new Pair();
-
-
+        return charResult.toString();
     }
 }
