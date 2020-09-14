@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Qn4 {
     public static void main(String args[]) {
-        String s = "leetcode";
+        String s = "abcabcaab";
         System.out.println(sortString(s));
 
     }
